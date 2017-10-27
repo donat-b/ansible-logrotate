@@ -1,0 +1,10 @@
+---
+
+- name: Deploy logrotate.conf
+  template:
+    src: 'logrotate.conf.j2'
+    dest: '/etc/logrotate.conf'
+    mode: '0644'
+    owner: 'root'
+    group: 'root'
+  tags: config

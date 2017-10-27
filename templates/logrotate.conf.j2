@@ -1,0 +1,32 @@
+{% for i in logrotate_options %}
+{{ i }}
+{% endfor %}
+
+# use the syslog group by default, since this is the owning group
+# of /var/log/syslog.
+su root syslog
+
+rotate {{ logrotate_rotate }}
+compresscmd {{ logrotate_compresscmd }}
+compressoptions {{ logrotate_compressoptions }}
+
+size {{ logrotate_size }}
+
+# packages can drop log rotation information into this directory.
+include /etc/logrotate.d
+
+# no packages own wtmp and btmp -- we'll rotate them here.
+/var/log/wtmp {
+  missingok
+  monthly
+  create 0664 root utmp
+  minsize 1M
+  rotate 1
+}
+
+/var/log/btmp {
+  missingok
+  monthly
+  create 0600 root utmp
+  rotate 1
+}
