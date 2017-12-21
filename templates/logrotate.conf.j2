@@ -1,3 +1,4 @@
+#jinja2: lstrip_blocks: "True"
 {% for i in logrotate_options %}
 {{ i }}
 {% endfor %}
@@ -18,18 +19,8 @@ size {{ logrotate_size }}
 # packages can drop log rotation information into this directory.
 include /etc/logrotate.d
 
-# no packages own wtmp and btmp -- we'll rotate them here.
-/var/log/wtmp {
-  missingok
-  monthly
-  create 0664 root utmp
-  minsize 1M
-  rotate 1
+{% for i in logrotate_rules %}
+{{ i.name }} {
+  {{ i.options | join("\n  ") }}
 }
-
-/var/log/btmp {
-  missingok
-  monthly
-  create 0600 root utmp
-  rotate 1
-}
+{% endfor %}

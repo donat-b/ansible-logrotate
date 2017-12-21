@@ -20,3 +20,18 @@ logrotate_options:
   - notifempty
   - nomail
   - noolddir
+
+logrotate_rules:
+  - name: '/var/log/wtmp'
+    options:
+      - 'missingok'
+      - 'monthly'
+      - 'create 0664 root utmp'
+      - 'minsize 1M'
+      - 'rotate 1'
+  - name: '/var/log/btmp'
+    options:
+      - 'missingok'
+      - 'monthly'
+      - 'create 0600 root utmp'
+      - 'rotate 1'
