@@ -1,0 +1,14 @@
+---
+
+- hosts: all
+  gather_facts: false
+  become: true
+  tasks:
+    - name: Ensure python2 is present
+      raw: 'which python || apt-get install -y python python-simplejson'
+      changed_when: false
+
+- hosts: all
+  become: true
+  roles:
+    - ansible-logrotate
