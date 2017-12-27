@@ -7,7 +7,7 @@ driver:
 lint:
   name: yamllint
   options:
-    config-file: yamllint.yml
+    config-file: molecule/yamllint.yml
 verifier:
   name: testinfra
   lint:
@@ -22,5 +22,9 @@ scenario:
 platforms:
   - name: logrotate-xenial64
     box: ubuntu/xenial64
-    memory: 512
-    cpus: 1
+  - name: logrotate-trusty64
+    box: 'ubuntu/trusty64'
+  - name: logrotate-stretch64
+    box: 'debian/stretch64'
+  - name: logrotate-jessie64
+    box: 'debian/jessie64'
