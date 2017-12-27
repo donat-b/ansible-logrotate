@@ -9,6 +9,7 @@ compressoptions {{ logrotate_compressoptions }}
 {% if logrotate_compressext is defined %}
 compressext {{ logrotate_compressext }}
 {% endif %}
+su {{ logrotate_user }} {{ logrotate_group }}
 
 size {{ logrotate_size }}
 

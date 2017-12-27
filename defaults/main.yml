@@ -7,6 +7,8 @@ logrotate_compress: yes
 logrotate_compresscmd: '/usr/bin/xz'
 logrotate_compressoptions: '-6 -T0'
 logrotate_size: '60M'
+logrotate_user: 'root'
+logrotate_group: 'syslog'
 
 logrotate_options:
   # rotate log files weekly.
